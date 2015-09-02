@@ -21,13 +21,18 @@ public class ProductDB
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		try
 		{
+			
 			Product products = em.find(Product.class, id);
+			//System.out.println(products);
 			return products;
+			
+			
 		}
 		finally
 		{
 			em.close();
 		}
+		
 	}
 	
 

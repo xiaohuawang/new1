@@ -35,12 +35,24 @@ public class Addcart extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		System.out.println("doget addtoCart");
+		
 		String productIdStr = request.getParameter("productId");
+		
+		//System.out.println("1");
 		
 		long productId = Long.parseLong(productIdStr);
 		
+		//System.out.println("2");
+		
 		Product product = ProductDB.getProduct(productId);
+		
+		//System.out.println("3");
+		
 		request.setAttribute("product", product);
+		
+		
+		//System.out.println("4");
+		
 		getServletContext().getRequestDispatcher("/addcart.jsp").forward(request, response);
 		
 	}
@@ -49,9 +61,9 @@ public class Addcart extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	
 System.out.println("dopost");
-		
+	/*	
 		String quantityStr = request.getParameter("quantity");
 		String productIdStr = request.getParameter("productId");
 		
@@ -73,9 +85,12 @@ System.out.println("dopost");
 		HttpSession session = request.getSession();
 		session.setAttribute("numItems", numItems);
 		getServletContext().getRequestDispatcher("/ShoppingCart").forward(request, response);
-		
+	*/	
 		
 		// TODO Auto-generated method stub
+		
+		
+		
 	}
 
 }
