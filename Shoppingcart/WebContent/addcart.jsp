@@ -49,7 +49,7 @@
         <h3>${product.pname}</h3>
         <p>${product.description}</p>
        <p>$${product.price} </p>
-        <form action = 'AddToCart' method = 'POST'>
+        <form action = 'Addcart' method = 'POST'>
         	<input type='hidden' name ='productId'  value = '${product.productid}'/ >
         	<input type='number' name='quantity'/>
         	<input type = 'submit' class='btn btn-primary'/>

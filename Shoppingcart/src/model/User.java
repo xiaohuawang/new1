@@ -22,7 +22,7 @@ public class User implements Serializable {
 	private String uname;
 	
 
-	private String upassword;
+	private long upassword;
 
 	public User() {
 	}
@@ -43,11 +43,11 @@ public class User implements Serializable {
 		this.uname = uname;
 	}
 
-	public String getUpassword() {
+	public long getUpassword() {
 		return this.upassword;
 	}
 
-	public void setUpassword(String upassword) {
+	public void setUpassword(long upassword) {
 		this.upassword = upassword;
 	}
 

@@ -21,6 +21,7 @@ import DB.ProductDB;
 public class Addcart extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -62,30 +63,53 @@ public class Addcart extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-System.out.println("dopost");
-	/*	
+System.out.println("dopost add to cart");
+	
 		String quantityStr = request.getParameter("quantity");
 		String productIdStr = request.getParameter("productId");
 		
+		
 		System.out.println(quantityStr + " " + productIdStr);
+		
+		
 		int quantity = Integer.parseInt(quantityStr);
 		long productId = Long.parseLong(productIdStr);
 		
-		Product product = new Product();
-		product.setAmount(quantity);
-		Cart cart=new Cart();
+		productId=productId+14;
+		//long productId = Long.parseLong(productIdStr);
+		//Product product = new Product();
+		
+		Cart cart =new Cart();
+		
+		System.out.println("1");
+		
 		cart.setQuantity(quantity);
+		
+		
+		
+		cart.setCartid(productId);
+		System.out.println("2");
+		
+	  
+		CartDB.insert(cart);;
+      
+        System.out.println("3");
+	   
+		
+		//Cart cart=new Cart();
+		//cart.setQuantity(quantity);
 		//lineItem.setQuantity(quantity);
 		
 		//lineItem.setShopproduct(DBProduct.getProduct(productId));
-		CartDB.insert(cart);
+		//ProductDB.insert(product);
 		//DBLineItem.insert(lineItem);
-		long numItems= CartDB.getCount(); 
+		long numItems= CartDB.getCount();
+		System.out.println("4");
 		//long numItems = DBLineItem.getCount();
 		HttpSession session = request.getSession();
 		session.setAttribute("numItems", numItems);
-		getServletContext().getRequestDispatcher("/ShoppingCart").forward(request, response);
-	*/	
+		getServletContext().getRequestDispatcher("/Shoppingcart").forward(request, response);
+	
 		
 		// TODO Auto-generated method stub
 		

@@ -16,6 +16,30 @@ public class ProductDB
 {
 	
 	
+	public static long getCount()
+	{
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		String queryStr = "SELECT COUNT(productid) FROM PRODUCT";
+		long count = 0;
+		try
+		{
+			Query query = em.createQuery(queryStr);
+			count = (long) query.getSingleResult();
+			
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			em.close();
+		}
+		return count;
+	}
+	
+	
+	
 	public static Product getProduct(long id)
 	{
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
@@ -69,11 +93,14 @@ public class ProductDB
 	{
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		EntityTransaction trans = em.getTransaction();
+		System.out.println("2.1");
 		trans.begin(); 
 		try 
 		{
+			System.out.println("2.2");
 			em.persist(product);
 			trans.commit();
+			System.out.println("2.3");
 		} 
 		catch (Exception e) 
 		{

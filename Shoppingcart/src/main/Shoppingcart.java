@@ -14,7 +14,6 @@ import javax.servlet.http.HttpSession;
 
 import model.Cart;
 import model.Product;
-import DB.CartDB;
 import DB.ProductDB;
 
 /**
@@ -34,7 +33,8 @@ public class Shoppingcart extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    	List<Cart> carts = CartDB.getCarts();
+    	Cart cart =new Cart();
+    	//List<Cart> carts = CartDB.getCarts();
     	String lineData = "<table class='table table-bordered table-striped'>";
     	lineData += "<thead>";
 		lineData += "<tr>";
@@ -70,7 +70,7 @@ public class Shoppingcart extends HttpServlet {
 			lineData += product.getPrice();
 			lineData += "</td>";
 			lineData += "<td>";
-			lineData += product.getAmount();
+			lineData += cart.getQuantity();
 			lineData += "</td>";
 			lineData += "<td>";
 			//lineData += cart.getLineTotal();
@@ -85,7 +85,9 @@ public class Shoppingcart extends HttpServlet {
 		lineData +="</tr>";
 		lineData +="</table>";
 		request.setAttribute("lineData", lineData);
-		long NumItems=CartDB.getCount();
+		
+		
+		long NumItems=ProductDB.getCount();
 		HttpSession session = request.getSession();
 		session.setAttribute("NumItems", NumItems);
 		getServletContext().getRequestDispatcher("/ShoppingCart.jsp").forward(request, response);

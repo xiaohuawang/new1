@@ -23,14 +23,16 @@
  
  
  
+ 
     <button type="submit" class="btn btn-default">Submit</button>
  </form>
   
  <br><br>
    <form role="form" action="Register" method = "post">
-    <button type="submit" class="btn btn-default">Register </button>
+    </button>	<a href="/Shoppingcart/Register.jsp"
+				class="btn btn-default"> register</a>
   </form>
-
+	
   
 
    

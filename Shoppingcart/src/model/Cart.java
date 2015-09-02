@@ -15,12 +15,9 @@ public class Cart implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long cartid;
 
-	private BigDecimal productid;
-
-	private double quantity;
+	private int quantity;
 
 	public Cart() {
 	}
@@ -33,19 +30,11 @@ public class Cart implements Serializable {
 		this.cartid = cartid;
 	}
 
-	public BigDecimal getProductid() {
-		return this.productid;
-	}
-
-	public void setProductid(BigDecimal productid) {
-		this.productid = productid;
-	}
- 
-	public double getQuantity() {
+	public int getQuantity() {
 		return this.quantity;
 	}
 
-	public void setQuantity(double quantity) {
+	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 
