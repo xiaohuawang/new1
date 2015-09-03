@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.Cart;
-import model.Product;
+import model.Pro;
 import DB.CartDB;
-import DB.ProductDB;
+import DB.ProDB;
 
 /**
  * Servlet implementation class Addcart
@@ -39,17 +39,17 @@ public class Addcart extends HttpServlet {
 		
 		String productIdStr = request.getParameter("productId");
 		
-		//System.out.println("1");
+		System.out.println("doget 1");
 		
 		long productId = Long.parseLong(productIdStr);
 		
 		//System.out.println("2");
 		
-		Product product = ProductDB.getProduct(productId);
+		Pro pro = ProDB.getProduct(productId);
 		
 		//System.out.println("3");
 		
-		request.setAttribute("product", product);
+		request.setAttribute("pro", pro);
 		
 		
 		//System.out.println("4");
@@ -69,13 +69,14 @@ System.out.println("dopost add to cart");
 		String productIdStr = request.getParameter("productId");
 		
 		
+		
 		System.out.println(quantityStr + " " + productIdStr);
 		
 		
 		int quantity = Integer.parseInt(quantityStr);
 		long productId = Long.parseLong(productIdStr);
 		
-		productId=productId+14;
+		productId=12;
 		//long productId = Long.parseLong(productIdStr);
 		//Product product = new Product();
 		
@@ -83,11 +84,20 @@ System.out.println("dopost add to cart");
 		
 		System.out.println("1");
 		
-		cart.setQuantity(quantity);
+		
+		HttpSession session = request.getSession();
+		
+		//String name = (String) session.getAttribute("cname");
+		 session.setAttribute("quantity", quantity);
+		 
+		 
+		 cart.setQuantity(quantity);
+		 
+		//cart.setQuantity(quantity);
 		
 		
 		
-		cart.setCartid(productId);
+		cart.setCartid(123);
 		System.out.println("2");
 		
 	  
@@ -106,7 +116,7 @@ System.out.println("dopost add to cart");
 		long numItems= CartDB.getCount();
 		System.out.println("4");
 		//long numItems = DBLineItem.getCount();
-		HttpSession session = request.getSession();
+		//HttpSession session = request.getSession();
 		session.setAttribute("numItems", numItems);
 		getServletContext().getRequestDispatcher("/Shoppingcart").forward(request, response);
 	

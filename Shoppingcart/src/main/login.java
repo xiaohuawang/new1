@@ -37,8 +37,15 @@ public class login extends HttpServlet {
 		// TODO Auto-generated method stub
 		System.out.println("login doget");
 		
+		
+		HttpSession session = request.getSession();
 		String message="";
 		String uname=request.getParameter("uname");
+		session.setAttribute("uname",uname);
+		
+		
+		
+		
 		//String upassword =request.getParameter("upassword");
 		
 		  User user = new User();
@@ -68,15 +75,15 @@ public class login extends HttpServlet {
 			if(user.getUname()!= null)
 			{
 				
-				HttpSession session = request.getSession();
-				session.setAttribute("currentuser", user);
+				//HttpSession session = request.getSession();
+				
 				message="correct";
 				response.setContentType("text/html");
 				request.setAttribute("message", message);
 				getServletContext().getRequestDispatcher("/Productlist.jsp")
 				.forward(request, response);
-				
-				
+				session.setAttribute("currentuser", user);
+			
 			}
 			
 			else

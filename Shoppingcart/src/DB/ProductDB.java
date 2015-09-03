@@ -19,7 +19,7 @@ public class ProductDB
 	public static long getCount()
 	{
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
-		String queryStr = "SELECT COUNT(productid) FROM PRODUCT";
+		String queryStr = "SELECT COUNT(l.PRODUCTID) FROM product l";
 		long count = 0;
 		try
 		{
@@ -88,6 +88,31 @@ public class ProductDB
 	
 
 
+	
+	public static List<Product> getuserProducts(String uname)
+	{
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		String queryStr = "SELECT p FROM Product p where p.uname='" + uname + "'";
+		List<Product> products = null;
+		try
+		{
+			Query query = em.createQuery(queryStr);
+			products =  query.getResultList();
+			System.out.println("size = " + products.size());
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			em.close();
+		}
+		return products;
+	}
+	
+	
+	
 	
 	public static void insert(Product product) 
 	{

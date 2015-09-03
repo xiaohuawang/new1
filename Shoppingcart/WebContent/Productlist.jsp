@@ -67,8 +67,8 @@ body {
 							<button type="submit" value="submit" class="btn btn-default"> go to product list
 								</button>
 
-							<a href="/GulpAssignment/RegisterReviewer.jsp"
-								class="btn btn-default"> lol</a>
+							<a href="/Shoppingcart/information.jsp"
+								class="btn btn-default"> your credit card info</a>
 						</div>
 
 					</form>

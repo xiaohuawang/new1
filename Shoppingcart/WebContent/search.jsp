@@ -11,24 +11,14 @@
 <body>
 
 <div class="container">
-  <h2>register form</h2>
-  <form role="form" action="Register" method="POST">
+  <h2>search your accountid</h2>
+  <form role="form" action="information1" method="POST">
     <div class="form-group">
-      <label for="userid">ID:</label>
-      <input type="text" class="form-control" name="userid" id="userid" placeholder="Enter userid">
+      <label for="accountid">ID:</label>
+      <input type="text" class="form-control" name="accountid" id="accountid" placeholder="Enter accountid">
     </div>
-    <div class="form-group">
-      <label for="uname">Name:</label>
-    
-    
-    
-    
-      <input type="text" class="form-control" id="uname" name="uname"  placeholder="Enter uname">
-    </div>
-    <div class="form-group">
-      <label for="upassword">Password:</label>
-      <input type="text" class="form-control" id="upassword" name="upassword"  placeholder="Enter upassword">
-    </div>
+   
+   
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
 </div>

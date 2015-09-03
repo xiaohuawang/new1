@@ -46,11 +46,11 @@
     <div class="thumbnail">
      
       <div class="caption">
-        <h3>${product.pname}</h3>
-        <p>${product.description}</p>
-       <p>$${product.price} </p>
+        <h3>${pro.pname}</h3>
+        <p>${pro.description}</p>
+       <p>$${pro.price} </p>
         <form action = 'Addcart' method = 'POST'>
-        	<input type='hidden' name ='productId'  value = '${product.productid}'/ >
+        	<input type='hidden' name ='productId'  value = '${pro.productid}'/ >
         	<input type='number' name='quantity'/>
         	<input type = 'submit' class='btn btn-primary'/>
         </form>

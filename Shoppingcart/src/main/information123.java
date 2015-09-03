@@ -8,56 +8,47 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.User;
-import DB.UserDB;
+import model.Information;
+import DB.InformationDB;
 
 /**
- * Servlet implementation class Register
+ * Servlet implementation class information123
  */
-@WebServlet("/Register")
-public class Register extends HttpServlet {
+@WebServlet("/information123")
+public class information123 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Register() {
+    public information123() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("doget");
+		System.out.println("doget info");		
+		String accountid1 = request.getParameter("accountid");
+		long accountid = Long.parseLong(accountid1);
 		
-		String userid1 = request.getParameter("userid");
-		long userid= Long.parseLong(userid1);
-				
-		String uname= request.getParameter("uname");
-		String upassword1=request.getParameter("upassword");
-		long upassword = Long.parseLong(upassword1);
+		String cardnum1 = request.getParameter("cardnum");
+		long cardnum = Long.parseLong(cardnum1);
 		
-		User user=new User();
-		user.setUname(uname);
-		user.setUpassword(upassword);
-		user.setUserid(userid);
+		String cardowner = request.getParameter("cardowner");
 		
-		UserDB.insert(user);
-		System.out.println("end");
+		Information information =new Information();
 		
-		//request.setAttribute("product", product);
-		getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+		 information.setAccountid(accountid);
+		 information.setCardnum(cardnum);
+		 information.setCardowner(cardowner);
 		
-		
-		
-		
-		
-		
-		
+		InformationDB.insert(information);
+		 
+		getServletContext().getRequestDispatcher("/Productlist.jsp").forward(request, response);
 	}
 
 	/**
@@ -65,8 +56,8 @@ public class Register extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("dopost");
-		doGet(request, response);
+		System.out.println("dopost info");		
+		doGet(request,response);
 	}
 
 }

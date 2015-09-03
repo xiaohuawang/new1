@@ -6,13 +6,12 @@ import java.math.BigDecimal;
 
 
 /**
- * The persistent class for the PRODUCTS database table.
+ * The persistent class for the PRO database table.
  * 
  */
 @Entity
-@Table(name="PRODUCTS")
-@NamedQuery(name="Product.findAll", query="SELECT p FROM Product p")
-public class Product implements Serializable {
+@NamedQuery(name="Pro.findAll", query="SELECT p FROM Pro p")
+public class Pro implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -26,9 +25,7 @@ public class Product implements Serializable {
 
 	private double price;
 
-	private String uname;
-
-	public Product() {
+	public Pro() {
 	}
 
 	public long getProductid() {
@@ -69,14 +66,6 @@ public class Product implements Serializable {
 
 	public void setPrice(double price) {
 		this.price = price;
-	}
-
-	public String getUname() {
-		return this.uname;
-	}
-
-	public void setUname(String uname) {
-		this.uname = uname;
 	}
 
 }

@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.Product;
+import model.Pro;
 import DB.CartDB;
-import DB.ProductDB;
+import DB.ProDB;
 /**
  * Servlet implementation class Detail
  */
@@ -32,24 +32,29 @@ public class Detail extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-System.out.println("doget in detail");
+
+		System.out.println("doget in detail");
 		
 		//should have validated it first
-		long productId = Long.parseLong(request.getParameter("productId").toString());
+          String a= request.getParameter("productId");
+          System.out.println(a);
+
+         long productId = Long.parseLong(request.getParameter("productId").toString());
 		
-		Product product = ProductDB.getProduct(productId);
+        
+        Pro pro = ProDB.getProduct(productId);
 		String productData = "<div class='panel panel-info col-sm-6 col-sm-offset-3'>";
 		productData += "<p>";
-		productData += product.getPname();
+		productData += pro.getPname();
 		productData += "</p>";
 		productData += "<p>";
-		productData += product.getDescription();
+		productData += pro.getDescription();
 		productData += "/<p>";
 		productData += "<p>";
-		productData += product.getAmount();
+		productData += pro.getAmount();
 		productData += "</p>";
 		productData += "<p>";
-		productData += product.getPrice();
+		productData += pro.getPrice();
 		//productData += "</p>";
 		//productData += "<img src='"+ product.getImageLink() +"'/>";
 		//productData += "</div>";

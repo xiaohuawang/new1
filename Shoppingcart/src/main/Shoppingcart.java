@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import model.Cart;
 import model.Product;
+import DB.CartDB;
 import DB.ProductDB;
 
 /**
@@ -23,6 +24,7 @@ import DB.ProductDB;
 public class Shoppingcart extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -33,7 +35,21 @@ public class Shoppingcart extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+    	
+	
+    	System.out.println("doget shoppingcart");
+    	
     	Cart cart =new Cart();
+    	
+    	HttpSession session = request.getSession();
+		//int quantity = (int) session.getAttribute("quantity");
+    	
+		//System.out.println(quantity);
+		//String name = (String) session.getAttribute("cname");
+		
+    	//cart.setQuantity(quantity);
+		
+    	
     	//List<Cart> carts = CartDB.getCarts();
     	String lineData = "<table class='table table-bordered table-striped'>";
     	lineData += "<thead>";
@@ -45,16 +61,21 @@ public class Shoppingcart extends HttpServlet {
 		lineData += "Price";
 		lineData += "</th>";
 		lineData += "<th>";
-		lineData += "Quantity";
+		lineData += "UserName";
 		lineData += "</th>";
 		lineData += "<th>";
-		lineData += "Line Total";
+		lineData += "Description";
 		lineData += "</th>";
 		lineData += "</tr>";
 		lineData += "</thead>";
-		List<Product> products =  ProductDB.getAllProducts();
-	
 		
+		String uname = (String) session.getAttribute("uname");
+		List<Product> products =  ProductDB.getuserProducts(uname);
+		//List<Cart> carts =  CartDB.getCarts();
+		session.setAttribute("products",products);
+		
+		
+		// session.setAttribute("quantity", quantity);
 		double total = 0;
 		for(Product product : products)
 		{
@@ -70,29 +91,36 @@ public class Shoppingcart extends HttpServlet {
 			lineData += product.getPrice();
 			lineData += "</td>";
 			lineData += "<td>";
-			lineData += cart.getQuantity();
+			lineData += product.getUname();
+			
 			lineData += "</td>";
 			lineData += "<td>";
-			//lineData += cart.getLineTotal();
+			lineData += product.getDescription();
 			lineData += "</td>";
 			lineData += "</tr>";
 			//total += lineItem.getLineTotal();
 			
 		}
-		lineData +="<tr>";
-		lineData +="<td colspan='3'>" + "Total" + "</td>";
-		lineData +="<td>" + total + "</td>";
-		lineData +="</tr>";
+		//lineData +="<tr>";
+		//lineData +="<td colspan='3'>" + "Total" + "</td>";
+		//lineData +="<td>" + total + "</td>";
+		//lineData +="</tr>";
 		lineData +="</table>";
 		request.setAttribute("lineData", lineData);
 		
 		
-		long NumItems=ProductDB.getCount();
-		HttpSession session = request.getSession();
-		session.setAttribute("NumItems", NumItems);
+		//long NumItems=ProductDB.getCount();
+		//HttpSession session = request.getSession();
+		//session.setAttribute("NumItems", NumItems);
 		getServletContext().getRequestDispatcher("/ShoppingCart.jsp").forward(request, response);
+		
+		
+		
+		
     }
 		
+    
+    
 		
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub

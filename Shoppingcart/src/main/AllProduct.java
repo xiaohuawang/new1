@@ -1,5 +1,7 @@
 package main;
 
+
+
 import java.io.IOException;
 import java.util.List;
 
@@ -15,39 +17,28 @@ import DB.ProDB;
 
 
 /**
- * Servlet implementation class ServletLogin
+ * Servlet implementation class AllProduct
  */
-@WebServlet("/Productlist")
-public class Productlist extends HttpServlet {
+@WebServlet("/AllProduct")
+public class AllProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Productlist() {
+    public AllProduct() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request,response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("Product post");
+		System.out.println("doget in Allproduct");
 		
-		
-		
-		
-		List<Pro> pros = ProDB.getAllProducts();
+		List<Pro> pros =ProDB.getAllProducts();
 		String productData = "<table class='table table-bordered table-striped'>";
 		productData += "<thead>";
 		productData += "<tr>";
@@ -68,51 +59,36 @@ public class Productlist extends HttpServlet {
 		productData += "</thead>";
 		for(Pro pro : pros)
 		{
-			System.out.println(pro.getDescription());
+			
 			productData += "<tr>";
 				productData += "<td>";
-				productData += pro.getPname();
+				productData +=  pro.getPname();
 				productData += "</td>";
 				productData += "<td>";
-				productData += pro.getAmount();
+				productData += pro.getDescription();
 				productData += "</td>";
 				productData += "<td>";
 				productData += pro.getPrice();
 				productData += "</td>";
 				productData += "<td>";
-				productData += "<a class='btn btn-info glyphicon glyphicon-eye-open' href='/Shoppingcart/Detail?productId=" + pro.getProductid() +"'> View</a>  ";
-				productData += "<a class='btn btn-primary glyphicon glyphicon-plus' href='/Shoppingcart/Addcart?productId=" + pro.getProductid() +"'> Add</a>";
+				productData += "<a class='btn btn-info glyphicon glyphicon-eye-open' href='/ShoppingCart/Detail?productId=" + pro.getProductid() +"'> View</a>  ";
+				productData += "<a class='btn btn-primary glyphicon glyphicon-plus' href='/ShoppingCart/AddToCart?productId=" + pro.getProductid() +"'> Add</a>";
 				productData += "</td>";
 			productData += "</tr>";
 		}
 		productData += "</table>";
+		request.setAttribute("pros", pros);
+//		long numItems = DBLineItem.getCount();
 		
-		
-		
-		//Product product=new Product();
-	    //ProductDB.insert(product);
-		
-		
-		request.setAttribute("productData", productData);
-		getServletContext().getRequestDispatcher("/OutputProduct.jsp").forward(request, response);
-	
-	
-		
-			
-		
-		
-		
-		
-		
-		
-	
-		
-		
-		
-		
-		
-		
-		
+		getServletContext().getRequestDispatcher("/ProductList.jsp").forward(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request,response);
 	}
 
 }

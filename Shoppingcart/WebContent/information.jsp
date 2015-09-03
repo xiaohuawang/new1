@@ -11,25 +11,32 @@
 <body>
 
 <div class="container">
-  <h2>register form</h2>
-  <form role="form" action="Register" method="POST">
+  <h2>add credit card information</h2>
+  <form role="form" action="information123" method="POST">
     <div class="form-group">
-      <label for="userid">ID:</label>
-      <input type="text" class="form-control" name="userid" id="userid" placeholder="Enter userid">
+      <label for="accountid">ID:</label>
+      <input type="text" class="form-control" name="accountid" id="accountid" placeholder="Enter accountid">
     </div>
     <div class="form-group">
-      <label for="uname">Name:</label>
+      <label for="cardnum">card number:</label>
     
     
     
     
-      <input type="text" class="form-control" id="uname" name="uname"  placeholder="Enter uname">
+      <input type="text" class="form-control" id="cardnum" name="cardnum"  placeholder="Enter cardnum">
     </div>
     <div class="form-group">
-      <label for="upassword">Password:</label>
-      <input type="text" class="form-control" id="upassword" name="upassword"  placeholder="Enter upassword">
+      <label for="cardowner">cardowner:</label>
+      <input type="text" class="form-control" id="cardowner" name="cardowner"  placeholder="Enter cardowner">
     </div>
+    
     <button type="submit" class="btn btn-default">Submit</button>
+    <br>
+    	</button>
+
+							<a href="/Shoppingcart/search.jsp"
+								class="btn btn-default">search your credit card info</a>
+	  </br>							
   </form>
 </div>
 
